@@ -27,8 +27,6 @@ class MetamorphConfigFactoryCest
     {
         $config = TestConfigWithoutTransformations::get();
 
-        $I->expectException(InvalidArgumentException::class, function() {
-            (new MetamorphConfigFactory())($config);
-        });
+        $I->expectException(InvalidArgumentException::class, (new MetamorphConfigFactory())($config));
     }
 }
