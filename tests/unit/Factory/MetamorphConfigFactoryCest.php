@@ -8,7 +8,7 @@ use Tests\Fixture\TestConfig;
 use Tests\Fixture\TestConfigWithoutTransformations;
 use Tests\Fixture\TestConfigNormalized;
 use UnitTester;
-use InvalidArgumentException;
+use PHPUnit\Framework\Exception;
 
 class MetamorphConfigFactoryCest
 {
@@ -27,6 +27,8 @@ class MetamorphConfigFactoryCest
     {
         $config = TestConfigWithoutTransformations::get();
 
-        $I->expectException(InvalidArgumentException::class, (new MetamorphConfigFactory())($config));
+        $I->expectException(new Exception('The transformations is not found'), function() {
+            (new MetamorphConfigFactory())($config);
+        });
     }
 }
